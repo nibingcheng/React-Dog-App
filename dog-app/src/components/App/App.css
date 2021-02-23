@@ -1,0 +1,22 @@
+.App {
+  background-color: white
+}
+
+nav {
+  max-height: 50px;
+  padding: 5px;
+  /* margin: 5px 20px 5px 0; */
+  display: flex;
+  justify-content: space-around;
+}
+
+.banner {
+  color: black;
+  text-decoration: none;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .App-logo {
+    animation: App-logo-spin infinite 20s linear;
+  }
+}
