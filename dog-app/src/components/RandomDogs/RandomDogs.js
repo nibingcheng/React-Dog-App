@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 import './RandomDogs.css';
-import {Switch, Route, Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 class RandomDogs extends Component {
-    constructor(props) {
-        super(props)
+    constructor() {
+        super()
     
         this.state = {
           breed: []
@@ -19,13 +19,18 @@ class RandomDogs extends Component {
     }
 
     handleSubmit=(e)=>{ 
-        // e.preventDefault();    
+        e.preventDefault();    
         this.props.getRandomDog(this.state.breed);
     }
 
     render() {
         let urlArry = Object.values(this.props);
+        // let urlArray = [];
+        // for (let i=0; i<urlArry.length; i++) {
+        //     urlArray = urlArray.push(urlArry.pop());
+        // }
         console.log("Random dog url:", urlArry);
+        
       return (         
         <div className="RandomDogs">
             <header className="RandomDogs-header">

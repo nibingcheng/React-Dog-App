@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import './BreedList.css';
-import {Switch, Route, Link } from 'react-router-dom';
+
 
 class BreedList extends Component {
     render() {      
@@ -12,7 +12,7 @@ class BreedList extends Component {
           renderEnable = true;
 
           for (let i=1; i<breedsList.length; i++) {
-            breedsListArry.push(<p> {breedsList[i]} </p>)
+            breedsListArry.push(<p key="test"> {breedsList[i]} </p>)
           }
       }
       console.log('BreedList page', breedsList);
@@ -26,7 +26,7 @@ class BreedList extends Component {
                 <div className="breedsList">
                     {breedsListArry}
                 </div>
-            : null
+             : null
             }
         </div>
       )

@@ -6,8 +6,8 @@ import BreedList from '../../components/BreedList/BreedList';
 import RandomDogs from '../../components/RandomDogs/RandomDogs';
 
 class App extends Component {
-  constructor(props) {
-    super(props)
+  constructor() {
+    super()
 
     this.state = {
       allBreeds: [],
@@ -41,9 +41,9 @@ class App extends Component {
         Accept: 'application/json'
       }
     }).then(response => {
-        console.log("App:", response.data.message);
+        // console.log("App:", response.data.message);
         this.setState ({
-         randomImgUrl: response.data.message
+        randomImgUrl: response.data.message
        })
       })
       .catch(err => {
@@ -52,7 +52,9 @@ class App extends Component {
   }
 
   render() {
-    console.log("App:", this.state.allBreeds);
+    console.log("App BreedList:", this.state.allBreeds);
+    console.log("App Random dog url:", this.state.randomImgUrl);
+    
       return (
         <div className="App">
             <header className="App-header">
@@ -85,7 +87,10 @@ class App extends Component {
                 }
                 />
               </Switch>
-              <img src={this.state.randomImgUrl} alt="" />
+              { this.state.randomImgUrl !== null &&
+                <img src={this.state.randomImgUrl} alt="" />
+                
+              }
             </main>
         </div>
       )
