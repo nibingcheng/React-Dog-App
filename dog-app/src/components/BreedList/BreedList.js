@@ -17,8 +17,8 @@ class BreedList extends Component {
       }
       console.log('BreedList page', breedsList);
       return (         
-        <div className="App">
-            <header className="App-header">
+        <div className="BreedList">
+            <header className="BreedList-header">
             This is the breed list page!
             </header>
             <button onClick={this.props.getAllBreeds}>List All Breeds</button>

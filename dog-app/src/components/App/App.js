@@ -3,13 +3,15 @@ import './App.css';
 import {Switch, Route, Link } from 'react-router-dom';
 import axios from 'axios';
 import BreedList from '../../components/BreedList/BreedList';
+import RandomDogs from '../../components/RandomDogs/RandomDogs';
 
 class App extends Component {
-  constructor() {
-    super()
+  constructor(props) {
+    super(props)
 
     this.state = {
-      allBreeds: []
+      allBreeds: [],
+      randomImgUrl: null
     }
   }
 
@@ -30,39 +32,61 @@ class App extends Component {
         console.error(err)
       })
   }
+  
+  getRandomDog = (breed) => {
+    let url = `https://dog.ceo/api/breed/${breed}/images/random`;
+
+    axios.get(url, {headers: 
+      {
+        Accept: 'application/json'
+      }
+    }).then(response => {
+        console.log("App:", response.data.message);
+        this.setState ({
+         randomImgUrl: response.data.message
+       })
+      })
+      .catch(err => {
+        console.error(err)
+      })
+  }
+
   render() {
     console.log("App:", this.state.allBreeds);
       return (
         <div className="App">
-          <header className="App-header">
-          <nav>
-          <Link to="/">
-          <div className="banner">Dog App Home</div>
-          </Link>
-          <h1>List of Dog Breeds</h1>
-          <Link to="/BreedList">
-            <div className="banner">Breed List</div>
-          </Link>
-          </nav>
-          </header>
+            <header className="App-header">
+            <nav>
+            <Link to="/">
+            <div className="banner">Dog App Home</div>
+            </Link>
+        
+            <Link to='/random'>
+              <div>Random Dog</div>
+            </Link>
+          
+            <Link to="/BreedList">
+              <div className="banner">Breed List</div>
+            </Link>
+            </nav>
+            </header>
 
-          <main>
-            <Switch>
-              <Route exact path="/"/>
-              
-              <Route path="/BreedList" render={routerProps=> 
-              <BreedList getAllBreeds={this.getAllBreeds} {...this.state.allBreeds} {...routerProps}/>
-              }
-              />
+            <main>
+              <Switch>
+                <Route exact path="/"/>
+                
+                <Route path="/BreedList" render={routerProps=> 
+                <BreedList getAllBreeds={this.getAllBreeds} {...this.state.allBreeds} {...routerProps}/>
+                }
+                />
 
-              {/* <Route path='/price/:currency'
-              render={routerProps=> <Price setPrice={this.setPrice} {...routerProps}
-              {...this.state}/>
-              }
-              /> */}
-  
-            </Switch>
-          </main>
+                <Route path='/random' render={routerProps=> 
+                <RandomDogs getRandomDog={this.getRandomDog} {...this.state.randomImgUrl} {...routerProps}/>
+                }
+                />
+              </Switch>
+              <img src={this.state.randomImgUrl} alt="" />
+            </main>
         </div>
       )
   };
