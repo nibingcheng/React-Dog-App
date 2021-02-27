@@ -83,13 +83,13 @@ class App extends Component {
                 />
 
                 <Route path='/random' render={routerProps=> 
-                <RandomDogs getRandomDog={this.getRandomDog} {...this.state.randomImgUrl} {...routerProps}/>
+                <RandomDogs getRandomDog={this.getRandomDog} imgURL={this.state.randomImgUrl} {...routerProps}/>
                 }
                 />
               </Switch>
+              {/* reander picture of random dog if exists */}
               { this.state.randomImgUrl !== null &&
                 <img src={this.state.randomImgUrl} alt="" />
-                
               }
             </main>
         </div>

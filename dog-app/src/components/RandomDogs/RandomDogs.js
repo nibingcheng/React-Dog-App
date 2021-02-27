@@ -24,10 +24,11 @@ class RandomDogs extends Component {
     }
 
     render() {
+      console.log(this.props);
         let urlArry = Object.values(this.props);
         // let urlArray = [];
         // for (let i=0; i<urlArry.length; i++) {
-        //     urlArray = urlArray.push(urlArry.pop());
+        //     urlArray.push(urlArry.reverse().pop());
         // }
         console.log("Random dog url:", urlArry);
         
@@ -37,7 +38,6 @@ class RandomDogs extends Component {
             This is the RandomDogs page!
             </header>
             <div>
-                <div>Random Dog</div>
                 <input type="text" placeholder="Breed Name" onChange={this.handleChange}/>
                 <br /><br />
                 <Link to='/random'>

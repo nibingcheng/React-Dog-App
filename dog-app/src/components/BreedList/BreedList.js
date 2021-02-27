@@ -12,7 +12,7 @@ class BreedList extends Component {
           renderEnable = true;
 
           for (let i=1; i<breedsList.length; i++) {
-            breedsListArry.push(<p key="test"> {breedsList[i]} </p>)
+            breedsListArry.push(<p key={i}> {breedsList[i]} </p>)
           }
       }
       console.log('BreedList page', breedsList);
