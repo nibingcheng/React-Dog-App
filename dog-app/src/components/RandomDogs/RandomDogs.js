@@ -8,6 +8,7 @@ class RandomDogs extends Component {
     
         this.state = {
           breed: []
+         
         }
       }
     
@@ -21,17 +22,13 @@ class RandomDogs extends Component {
     handleSubmit=(e)=>{ 
         e.preventDefault();    
         this.props.getRandomDog(this.state.breed);
-    }
-
-    render() {
-      console.log(this.props);
-        let urlArry = Object.values(this.props);
-        // let urlArray = [];
-        // for (let i=0; i<urlArry.length; i++) {
-        //     urlArray.push(urlArry.reverse().pop());
-        // }
-        console.log("Random dog url:", urlArry);
         
+    }
+    
+    
+    render() {
+      console.log(this.props.randomImgUrl);
+     
       return (         
         <div className="RandomDogs">
             <header className="RandomDogs-header">
@@ -41,9 +38,16 @@ class RandomDogs extends Component {
                 <input type="text" placeholder="Breed Name" onChange={this.handleChange}/>
                 <br /><br />
                 <Link to='/random'>
-                <button type='submit' onClick={this.handleSubmit}>Submit</button>
+                <button type='submit' onClick={this.handleSubmit}>Submit</button><br /><br />
                 </Link>
             </div>      
+            {/* render picture of random dog if exists */}
+            { this.props.randomImgUrl !== null &&
+                <div>
+                <img src={this.props.randomImgUrl} alt="" />
+              
+                </div>
+              }
         </div>
       )
   };

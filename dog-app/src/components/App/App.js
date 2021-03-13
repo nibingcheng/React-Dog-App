@@ -23,7 +23,7 @@ class App extends Component {
         Accept: 'application/json'
       }
     }).then(response => {
-        console.log("App:", response.data.message);
+        // console.log("App:", response.data.message);
         this.setState ({
          allBreeds: response.data.message
        })
@@ -52,8 +52,8 @@ class App extends Component {
   }
 
   render() {
-    console.log("App BreedList:", this.state.allBreeds);
-    console.log("App Random dog url:", this.state.randomImgUrl);
+    // console.log("App BreedList:", this.state.allBreeds);
+    // console.log("App Random dog url:", this.state.randomImgUrl);
     
       return (
         <div className="App">
@@ -83,14 +83,11 @@ class App extends Component {
                 />
 
                 <Route path='/random' render={routerProps=> 
-                <RandomDogs getRandomDog={this.getRandomDog} imgURL={this.state.randomImgUrl} {...routerProps}/>
+                <RandomDogs getRandomDog={this.getRandomDog} randomImgUrl={this.state.randomImgUrl} {...routerProps}/>
                 }
                 />
               </Switch>
-              {/* reander picture of random dog if exists */}
-              { this.state.randomImgUrl !== null &&
-                <img src={this.state.randomImgUrl} alt="" />
-              }
+              
             </main>
         </div>
       )
